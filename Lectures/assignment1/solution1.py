@@ -29,7 +29,26 @@ def plotData(x, y):
     pyplot.ylabel('Profit in $10,000')
     pyplot.xlabel('Population of City in 10,000s')
     fig = pyplot.figure()
-    pyplot.show()
+    # pyplot.show()
     return pyplot
 
 plotData(x, y)  
+
+x = np.stack([np.ones(m), x], axis=1)
+
+def computeCost(x, y, theta):
+    m = len(y)  # number of training examples
+    h = x.dot(theta)  # hypothesis
+    # Compute the cost function J
+    J=0
+    J = (1 / (2 * m)) * np.sum(np.square(h - y))
+    return J
+
+J = computeCost(x, y, theta=np.array([0.0, 0.0]))
+print('With theta = [0, 0] \nCost computed = %.2f' % J)
+print('Expected cost value (approximately) 32.07\n')
+
+# further testing of the cost function
+J = computeCost(x, y, theta=np.array([-1, 2]))
+print('With theta = [-1, 2]\nCost computed = %.2f' % J)
+print('Expected cost value (approximately) 54.24')
