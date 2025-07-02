@@ -29,5 +29,7 @@ def plotData(x, y):
     pyplot.ylabel('Profit in $10,000')
     pyplot.xlabel('Population of City in 10,000s')
     fig = pyplot.figure()
+    pyplot.show()
     return pyplot
+
 plotData(x, y)  
