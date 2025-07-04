@@ -52,3 +52,21 @@ print('Expected cost value (approximately) 32.07\n')
 J = computeCost(x, y, theta=np.array([-1, 2]))
 print('With theta = [-1, 2]\nCost computed = %.2f' % J)
 print('Expected cost value (approximately) 54.24')
+
+def gradientDescent(x, y, theta, alpha, num_iters):
+    m = len(y)  # number of training examples
+    J_history = np.zeros(num_iters)  # to store cost in each iteration
+
+    for i in range(num_iters):
+        h = x.dot(theta)  # hypothesis
+        theta = theta - (alpha / m) * (x.T.dot(h - y))  # update theta
+        J_history[i] = computeCost(x, y, theta)  # save the cost
+
+    return theta, J_history
+
+def runGradientDescent(x, y, alpha=0.01, num_iters=1500):
+    # Initialize theta
+    theta = np.zeros(2)
+    # Run gradient descent
+    theta, J_history = gradientDescent(x, y, theta, alpha, num_iters)
+    return theta, J_history
